@@ -1,0 +1,15 @@
+# Global Values
+repoUrl: 'https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/eks-services'
+targetRevision: HEAD
+region: ''
+account: ''
+clusterName: ''
+
+# Kubernetes Dashboard Values
+kubernetesDashboard:
+  enable: false
+  serviceAccountName:
+
+# Metrics Server Values
+metricsServer:
+  enable: false
