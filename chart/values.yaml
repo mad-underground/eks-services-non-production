@@ -7,7 +7,7 @@ clusterName: ''
 
 # Kubernetes Dashboard Values
 kubernetesDashboard:
-  enable: false
+  enable: true
   serviceAccountName:
 
 # Metrics Server Values
