@@ -13,3 +13,8 @@ kubernetesDashboard:
 # Metrics Server Values
 metricsServer:
   enable: true
+
+
+# Argo Work Flows Values
+argoWorkflows:
+  enable: true
