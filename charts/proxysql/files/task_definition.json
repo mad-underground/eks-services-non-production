@@ -1,0 +1,103 @@
+{
+    "family": "proxysql",
+    "taskRoleArn": "arn:aws:iam::265292841411:role/MU.ECS.TaskRole",
+    "executionRoleArn": "arn:aws:iam::265292841411:role/MU.ECS.TaskExecutionRole",
+    "networkMode": "bridge",
+    "volumes": [
+        {
+            "name": "etc-proxysql",
+            "dockerVolumeConfiguration" : {
+                "scope": "task",
+                "driver": "local"
+            }
+        }
+    ],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "tags": [],
+    "containerDefinitions": [
+        {
+            "name": "init",
+            "image": "python:3.7",
+            "cpu": 128,
+            "memory": 256,
+            "memoryReservation": 128,
+            "portMappings": [],
+            "essential": true,
+            "command": [
+                "sleep",
+                "infinity"
+            ],
+            "environment": [],
+            "mountPoints": [
+                {
+                    "sourceVolume": "etc-proxysql",
+                    "containerPath": "/etc/proxysql",
+                    "readOnly": false
+                }
+            ],
+            "volumesFrom": [],
+            "linuxParameters": {
+                "initProcessEnabled": true
+            },
+            "secrets": [],
+            "workingDirectory": "/opt",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/mu/ecs/service/proxysql",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "init"
+                }
+            },
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "python --version || exit 1"
+                ],
+                "interval": 60,
+                "timeout": 10,
+                "retries": 3,
+                "startPeriod": 2
+            }
+        },
+        {
+            "name": "proxysql",
+            "image": "proxysql/proxysql:2.5.4-debian",
+            "cpu": 896,
+            "memory": 1024,
+            "memoryReservation": 512,
+            "portMappings": [],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [
+                {
+                    "sourceVolume": "etc-proxysql",
+                    "containerPath": "/etc/proxysql",
+                    "readOnly": false
+                }
+            ],
+            "volumesFrom": [],
+            "linuxParameters": {
+                "initProcessEnabled": true
+            },
+            "secrets": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/mu/ecs/service/proxysql",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "proxysql"
+                }
+            }
+        }
+    ]
+}
