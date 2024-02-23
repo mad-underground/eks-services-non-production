@@ -1,5 +1,5 @@
 # Global Values
-repoUrl: 'https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/eks-services'
+repoUrl: 'https://github.com/mad-underground/eks-services-non-production'
 targetRevision: HEAD
 region: ''
 account: ''
