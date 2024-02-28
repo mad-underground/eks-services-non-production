@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/metrics-server
+    path: charts/metrics-server
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
