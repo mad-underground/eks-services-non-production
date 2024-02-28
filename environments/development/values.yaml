@@ -1,6 +1,6 @@
 # Global Values
-repoUrl: 'https://github.com/mad-underground/eks-services-non-production'
-targetRevision: HEAD
+repoUrl: '"https://gitlab.com/mad-underground/gitops/kubernetes/eks-services-non-production.git'
+targetRevision: main
 region: ''
 account: ''
 clusterName: ''
