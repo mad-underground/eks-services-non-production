@@ -14,7 +14,6 @@ kubernetesDashboard:
 metricsServer:
   enable: true
 
-
 # Argo Work Flows Values
 argoWorkflows:
   enable: true
